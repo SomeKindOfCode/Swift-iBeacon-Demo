@@ -19,6 +19,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var beaconRegion : CLBeaconRegion
     
     init(coder aDecoder: NSCoder!){
+        // This is the main beacon we want to get notified about
         beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: beaconUUIDString), identifier: beaconIdentifier)
         
         super.init(coder: aDecoder)
@@ -41,7 +42,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    //MARK: DELEGATE
+    /*
+        CLLocationManagerDelegate
+    */
     func locationManager(manager: CLLocationManager!, monitoringDidFailForRegion region: CLRegion!, withError error: NSError!){
         beaconLabel.text = "monitoring for region failed: \(error)"
     }
@@ -56,6 +59,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         beaconLabel.text = "You exited"
     }
     func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
+        // You can scan for any beacon in here!
+        // Find the closest one by RSSI etc
         beaconLabel.text = "Ranged \(beacons.count) Beacons"
     }
 }
