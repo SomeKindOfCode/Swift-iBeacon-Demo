@@ -7,15 +7,28 @@
 //
 
 import UIKit
+import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
                             
     var window: UIWindow?
 
+    let locationManager = CLLocationManager()
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
+        
+        locationManager.delegate = self
+        
+        application.registerUserNotificationSettings(
+            UIUserNotificationSettings(
+                forTypes: UIUserNotificationType.Alert | UIUserNotificationType.Sound,
+                categories: nil
+            )
+        )
+        
+        
         return true
     }
 
@@ -42,5 +55,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    
+    func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
+        let enterRegion = "You entered"
+        
+        var notification = UILocalNotification()
+        notification.alertBody = enterRegion
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+    func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
+        let exitRegion = "You exited"
+        
+        var notification = UILocalNotification()
+        notification.alertBody = exitRegion
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+        
 }
 

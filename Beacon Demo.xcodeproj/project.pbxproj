@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		92E663D1197B185E0077F3BE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E663D0197B185E0077F3BE /* CoreLocation.framework */; };
 		92E79414197AFDCF00CB9EF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E79413197AFDCF00CB9EF8 /* AppDelegate.swift */; };
 		92E79416197AFDCF00CB9EF8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E79415197AFDCF00CB9EF8 /* ViewController.swift */; };
 		92E79419197AFDCF00CB9EF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92E79417197AFDCF00CB9EF8 /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		92E663D0197B185E0077F3BE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		92E7940E197AFDCF00CB9EF8 /* Beacon Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Beacon Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E79412197AFDCF00CB9EF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92E79413197AFDCF00CB9EF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92E663D1197B185E0077F3BE /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +60,7 @@
 		92E79405197AFDCF00CB9EF8 = {
 			isa = PBXGroup;
 			children = (
+				92E663D0197B185E0077F3BE /* CoreLocation.framework */,
 				92E79410197AFDCF00CB9EF8 /* Beacon Demo */,
 				92E79423197AFDD000CB9EF8 /* Beacon DemoTests */,
 				92E7940F197AFDCF00CB9EF8 /* Products */,
@@ -158,6 +162,11 @@
 				TargetAttributes = {
 					92E7940D197AFDCF00CB9EF8 = {
 						CreatedOnToolsVersion = 6.0;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					92E7941F197AFDD000CB9EF8 = {
 						CreatedOnToolsVersion = 6.0;
@@ -397,6 +406,7 @@
 				92E7942C197AFDD000CB9EF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		92E7942D197AFDD000CB9EF8 /* Build configuration list for PBXNativeTarget "Beacon DemoTests" */ = {
 			isa = XCConfigurationList;
@@ -405,6 +415,7 @@
 				92E7942F197AFDD000CB9EF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,12 +7,33 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ViewController: UIViewController {
-                            
+class ViewController: UIViewController, CLLocationManagerDelegate {
+    @IBOutlet weak var beaconLabel: UILabel!
+    
+    private var beaconUUIDString = "ADD-THE-UUID-HERE"
+    private var beaconIdentifier = "com.somekindofcode.sample"
+    
+    var locationManager = CLLocationManager()
+    var beaconRegion : CLBeaconRegion
+    
+    init(coder aDecoder: NSCoder!){
+        beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: beaconUUIDString), identifier: beaconIdentifier)
+        
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        locationManager.requestAlwaysAuthorization()
+        beaconRegion.notifyEntryStateOnDisplay = true
+        
+        locationManager.delegate = self
+        locationManager.startMonitoringForRegion(beaconRegion)
+        locationManager.startRangingBeaconsInRegion(beaconRegion)
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +41,22 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    //MARK: DELEGATE
+    func locationManager(manager: CLLocationManager!, monitoringDidFailForRegion region: CLRegion!, withError error: NSError!){
+        beaconLabel.text = "monitoring for region failed: \(error)"
+    }
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!){
+        beaconLabel.text  = "locationmanager failed: \(error)"
+    }
+    
+    func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
+        beaconLabel.text = "You entered"
+    }
+    func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
+        beaconLabel.text = "You exited"
+    }
+    func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
+        beaconLabel.text = "Ranged \(beacons.count) Beacons"
+    }
 }
 
